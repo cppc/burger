@@ -14,8 +14,7 @@ const INGREDIENT_PRICES = {
 const updateIngredient = (state, type, adjustment) => {
     const oldPrice = state.totalPrice;
     const updatedPrice = oldPrice + adjustment * INGREDIENT_PRICES[type];
-    const updatedState = { totalPrice: updatedPrice };
-    return updatedState;
+    return { totalPrice: updatedPrice };
 };
 
 const checkoutReducer = (state = initialState, action) => {

@@ -9,7 +9,7 @@ const initialState = {
 };
 
 const orderReducer = (state = initialState, action) => {
-    const newValues = {};
+//    const newValues = {};
 
     switch (action.type) {
         case actionTypes.RECEIVE_ORDERS:
