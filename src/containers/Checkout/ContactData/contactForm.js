@@ -1,15 +1,21 @@
-import { makeInputElement, makeSelectElement } from '../../../util/formUtils';
+import {makeForm, makeInputElement, makeSelectElement} from '../../../util/formUtils';
 
-const val = { required: true };
+const required = {required: true};
 
-export default {
-    name: makeInputElement('text', 'Your Name', '', val),
-    email: makeInputElement('text', 'Your Email Address', '', val),
-    street: makeInputElement('text', 'Your Street Address', '', val),
-    postalCode: makeInputElement('text', 'Your Postal Code', '', val),
+const controls = {
+    name: makeInputElement('text', 'Your Name', '', required),
+    email: makeInputElement('text', 'Your Email Address', '', required),
+    street: makeInputElement('text', 'Your Street Address', '', required),
+    postalCode: makeInputElement('text', 'Your Postal Code', '', required),
     deliveryMethod: makeSelectElement([
             {value: 'fastest', displayValue: 'Fastest'},
             {value: 'cheapest', displayValue: 'Budget'}
         ]
         , 'fastest')
-}
+};
+
+const contactForm = (handler) => {
+    return makeForm(controls, handler);
+};
+
+export default contactForm;
