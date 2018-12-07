@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
 import CheckoutSummary from "../../components/Order/CheckoutSummary/CheckoutSummary";
@@ -18,10 +18,10 @@ const checkout = (props) => {
                     }} />
                 <Route
                     path={props.match.path + '/contact-data'}
-                    component={ContactData}/>)} />
+                    component={ContactData} />
             </div>
         );
- }
+ };
 
  const mapStateToProps = (state, props) => {
     return ({
