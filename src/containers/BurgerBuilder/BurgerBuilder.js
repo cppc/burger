@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import {addIngredient, removeIngredient} from "../../store/actions";
+import {addIngredient, removeIngredient, setAuthRedirectPath} from "../../store/actions/index";
 
 import Aux from "../../hoc/Aux";
 
@@ -23,7 +23,11 @@ class BurgerBuilder extends Component {
     };
 
     purchaseHandler() {
-        this.setState({ordering: true})
+        if (this.props.authenticated) {
+            this.setState({ordering: true})
+        }
+        this.props.setAuthRedirectPath(this.props.readyToOrder ? '/checkout' : '/')
+        this.props.history.push('/auth')
     }
 
     purchaseCancelledHandler = () => {
@@ -55,6 +59,7 @@ class BurgerBuilder extends Component {
                 </Modal>
                 <Burger ingredients={this.props.ingredients}/>
                 <BuildControls
+                    authenticated={this.props.authenticated}
                     ingredientAdded={this.props.addIngredient}
                     ingredientRemoved={this.props.removeIngredient}
                     disabled={disabledInfo}
@@ -67,15 +72,16 @@ class BurgerBuilder extends Component {
     }
 }
 
-const mapStateToProps = ({burger, checkout}, ownProps) => {
+const mapStateToProps = ({burger, checkout, auth}, ownProps) => {
     console.log(burger, checkout);
     const {ingredients, readyToOrder} = burger;
     const {totalPrice} = checkout;
     return ({
         ingredients: ingredients,
         readyToOrder: readyToOrder,
-        totalPrice: totalPrice
+        totalPrice: totalPrice,
+        authenticated: auth.authenticated
     })
 };
 
-export default connect(mapStateToProps, {addIngredient, removeIngredient})(withErrorHandler(BurgerBuilder, axios));
+export default connect(mapStateToProps, {addIngredient, removeIngredient, setAuthRedirectPath})(withErrorHandler(BurgerBuilder, axios));

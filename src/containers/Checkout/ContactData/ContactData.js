@@ -13,10 +13,6 @@ import {postOrder} from '../../../store/actions/orderActions';
 
 class ContactData extends Component {
 
-    static x = {
-        foo: 5
-    };
-
     componentDidUpdate(prevProps) {
         if (prevProps.loading && !this.props.loading) {
             this.props.history.push('/');

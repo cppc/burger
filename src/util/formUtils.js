@@ -123,7 +123,7 @@ export const renderFormControls = (form) => {
 };
 
 export default {
-    makeForm: renderFormControls,
+    makeForm: makeForm,
     makeSelectElement: makeSelectElement,
     makeInputElement: makeInputElement,
     formValid: formValid,
