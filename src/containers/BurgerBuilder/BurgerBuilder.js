@@ -15,7 +15,7 @@ import Modal from "../../components/ui/Modal/Modal";
 import OrderSummary from "../../components/OrderSummary/OrderSummary";
 import Spinner from "../../components/ui/Spinner/Spinner";
 
-class BurgerBuilder extends Component {
+export class BurgerBuilder extends Component {
 
     state = {
         ordering: false,
@@ -25,9 +25,10 @@ class BurgerBuilder extends Component {
     purchaseHandler() {
         if (this.props.authenticated) {
             this.setState({ordering: true})
+        } else {
+            this.props.setAuthRedirectPath(this.props.readyToOrder ? '/checkout' : '/');
+            this.props.history.push('/auth')
         }
-        this.props.setAuthRedirectPath(this.props.readyToOrder ? '/checkout' : '/')
-        this.props.history.push('/auth')
     }
 
     purchaseCancelledHandler = () => {

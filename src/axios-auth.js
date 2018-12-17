@@ -3,8 +3,8 @@ import axios from 'axios';
 const baseAPI = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/';
 const signupPath = 'signupNewUser';
 const loginPath = 'verifyPassword';
-const keyParam = '?key=';
-const apiKey = 'AIzaSyCL1XxXoGAyAa4HP3QSdR-lQ0eGqSPanFs';
+// const keyParam = '?key=';
+// const apiKey = 'AIzaSyCL1XxXoGAyAa4HP3QSdR-lQ0eGqSPanFs';
 
 const makePath = path => (baseAPI + path);
 

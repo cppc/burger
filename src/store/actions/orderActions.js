@@ -9,7 +9,9 @@ export const saveOrder = () => ({type: actionTypes.SAVE_ORDER});
 export const fetchOrders = () => (dispatch, getState) => {
     console.log("Fetch", dispatch);
     dispatch(loadOrders());
-    axios.get('/orders.json?auth=' + getState().auth.token)
+    const { token, userId } = getState().auth;
+    const query = '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"';
+    axios.get('/orders.json' + query)
         .then( res => {
             const fetchedOrders = [];
             for (let key in res.data) {

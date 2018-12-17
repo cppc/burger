@@ -5,11 +5,9 @@ import {connect} from "react-redux";
 import classes from './Auth.module.css';
 import authForm from './authForm';
 import * as actions from '../../store/actions';
-import {signUp, login} from '../../axios-auth';
 
 import Spinner from "../../components/ui/Spinner/Spinner";
 import Button from "../../components/ui/Button/Button";
-import withErrorHandler from "../../hoc/withErrorHandler";
 import {Redirect} from "react-router-dom";
 
 class Auth extends Component {

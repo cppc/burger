@@ -119,5 +119,11 @@
     "presets": [
       "react-app"
     ]
+  },
+  "homepage": "/objexburger",
+  "devDependencies": {
+    "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
+    "react-test-renderer": "^16.6.3"
   }
 }
