@@ -1,3 +1,12 @@
+## Simple React app based on a React/Redux course.
+
+### Features
+
+- Register/Login
+- Build a burger order
+- Checkout/payment mockup
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
