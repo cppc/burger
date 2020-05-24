@@ -8,8 +8,10 @@ export const
     SAVE_ORDER = "save_order",
     RECEIVE_ORDER = "receive_order",
     AUTH_START = 'auth_start',
+    AUTH_INITIATE = 'auth_initiate',
     AUTH_FAIL = 'auth_fail',
     AUTH_SUCCESS= 'auth_success',
     AUTH_LOGOUT = 'auth_logout',
+    AUTH_CHECK_TIMEOUT = 'auth_check_timeout',
     AUTH_INITIATE_LOGOUT = "auth_initiate_logout"
 ;

@@ -16,13 +16,14 @@ export const logout = () => {
     return {type: actionTypes.AUTH_INITIATE_LOGOUT};
 };
 
-export const checkTokenTimeout = (expiration) => {
-    return dispatch => {
-        setTimeout(() => {
-            dispatch(logout())
-        }, expiration * 1000)
-    }
-};
+export const logoutSucceed = () => ({
+    type: actionTypes.AUTH_LOGOUT
+});
+
+export const checkTokenTimeout = (expiration) => ({
+    type: actionTypes.AUTH_CHECK_TIMEOUT,
+    expirationTime: expiration * 1000
+});
 
 export const checkAuthState = () => {
     return dispatch => {
@@ -45,26 +46,9 @@ export const checkAuthState = () => {
 
 export const setAuthRedirectPath = path => ({type: actionTypes.SET_AUTH_REDIRECT_PATH, path: path});
 
-export const auth = (email, password, register) => dispatch => {
-    console.log('Authenticate', dispatch);
-    dispatch(authStart());
-    let endpoint = register ? signUp : login;
-    endpoint.post('', {
-        email: email,
-        password: password,
-        returnSecureToken: true
-    })
-        .then(res => {
-            console.log(res);
-            const eDate = new Date(new Date().getTime() + res.data.expiresIn * 1000);
-            localStorage.setItem('token', res.data.idToken);
-            localStorage.setItem('expirationDate', eDate);
-            localStorage.setItem('userId', res.data.localId);
-            dispatch(authSuccess(res.data.idToken, res.data.localId));
-            dispatch(checkTokenTimeout(res.data.expiresIn))
-        })
-        .catch(error => {
-            console.log(error);
-            dispatch(authFail(error))
-        })
-};
+export const auth = (email, password, register) => ({
+    type: actionTypes.AUTH_INITIATE,
+    email,
+    password,
+    register
+});
