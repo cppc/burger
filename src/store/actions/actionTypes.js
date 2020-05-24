@@ -10,5 +10,6 @@ export const
     AUTH_START = 'auth_start',
     AUTH_FAIL = 'auth_fail',
     AUTH_SUCCESS= 'auth_success',
-    AUTH_LOGOUT = 'auth_logout'
+    AUTH_LOGOUT = 'auth_logout',
+    AUTH_INITIATE_LOGOUT = "auth_initiate_logout"
 ;

@@ -10,10 +10,10 @@ export const authSuccess = (token, id) => ({
 });
 
 export const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('expirationDate');
-    localStorage.removeItem('userId');
-    return {type: actionTypes.AUTH_LOGOUT};
+    // localStorage.removeItem('token');
+    // localStorage.removeItem('expirationDate');
+    // localStorage.removeItem('userId');
+    return {type: actionTypes.AUTH_INITIATE_LOGOUT};
 };
 
 export const checkTokenTimeout = (expiration) => {
