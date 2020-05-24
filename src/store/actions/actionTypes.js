@@ -13,5 +13,6 @@ export const
     AUTH_SUCCESS= 'auth_success',
     AUTH_LOGOUT = 'auth_logout',
     AUTH_CHECK_TIMEOUT = 'auth_check_timeout',
+    AUTH_CHECK_STATE = 'auth_check_state',
     AUTH_INITIATE_LOGOUT = "auth_initiate_logout"
 ;

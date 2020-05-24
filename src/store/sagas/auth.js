@@ -36,3 +36,20 @@ export function* authenticateUserSaga(action) {
         yield put(authFail(error))
     }
 }
+
+export function* autoSigninSaga(action) {
+    const token = yield localStorage.getItem('token');
+    if (token) {
+        const expirationDate = new Date(localStorage.getItem('expirationDate'));
+        const now = new Date();
+        if (expirationDate <= now) {
+            yield put(logout());
+        } else {
+            const userId = yield localStorage.getItem('userId');
+            yield put(authSuccess(token, userId));
+            yield put(checkTokenTimeout((expirationDate.getTime() - now.getTime()) / 1000));
+        }
+    } else {
+        yield put(logout());
+    }
+}
