@@ -46,7 +46,7 @@ class ContactData extends Component {
             userId: this.props.userId,
             orderData: this.formData()
         };
-        this.props.postOrder(order);
+        this.props.onPostOrder(order, this.props.token);
     };
 
     render() {
@@ -72,8 +72,13 @@ const mapStateToProps = (state, props) => {
         ingredients: state.burger.ingredients,
         price: state.checkout.totalPrice,
         loading: state.order.saving,
+        token: state.auth.token,
         userId: state.auth.userId
     })
 };
 
-export default connect(mapStateToProps, {postOrder})(ContactData);
+const mapDispatchToProps = dispatch => ({
+    onPostOrder: (orderData, token) => dispatch(postOrder(orderData, token))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactData);

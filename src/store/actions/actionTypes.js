@@ -5,6 +5,7 @@ export const
     CHECKOUT = "checkout",
     LOAD_ORDERS = "load_orders",
     FETCH_ORDERS = "fetch_orders",
+    POST_ORDER = "post_order",
     RECEIVE_ORDERS = "receive_orders",
     SAVE_ORDER = "save_order",
     RECEIVE_ORDER = "receive_order",

@@ -2,7 +2,7 @@ import { put } from 'redux-saga';
 
 import axios from "../../axios-orders";
 
-import { loadOrders, receiveOrders } from '../actions';
+import { loadOrders, receiveOrders, saveOrder, receiveOrder } from '../actions';
 
 export function* fetchOrdersSaga(action) {
     yield put(loadOrders());
@@ -17,5 +17,15 @@ export function* fetchOrdersSaga(action) {
         yield put(receiveOrders(fetchedOrders))
     } catch(error) {
         yield put(receiveOrders([]))
+    }
+}
+
+export function* postOrderSaga(action) {
+    yield put(saveOrder());
+    try {
+        const response = yield axios.post('/orders.json?auth=' + action.token, action.order);
+        yield put(receiveOrder(response.data));
+    } catch (error) {
+        yield put(receiveOrder({}))
     }
 }
