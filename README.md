@@ -5,6 +5,7 @@
 - Register/Login
 - Build a burger order
 - Checkout/payment mockup
+- Form utility for building forms, and wiring them to state
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
