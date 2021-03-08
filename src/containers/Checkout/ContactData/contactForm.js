@@ -2,17 +2,17 @@ import {makeForm, makeInputElement, makeSelectElement} from '../../../util/formU
 
 const required = {required: true};
 
-const controls = {
-    name: makeInputElement('text', 'Your Name', '', required),
-    email: makeInputElement('text', 'Your Email Address', '', required),
-    street: makeInputElement('text', 'Your Street Address', '', required),
-    postalCode: makeInputElement('text', 'Your Postal Code', '', required),
-    deliveryMethod: makeSelectElement([
+const controls = [
+    makeInputElement('name', 'text', 'Your Name', '', required),
+    makeInputElement('email', 'text', 'Your Email Address', '', required),
+    makeInputElement('street', 'text', 'Your Street Address', '', required),
+    makeInputElement('postalCode', 'text', 'Your Postal Code', '', required),
+    makeSelectElement('deliveryMethod',[
             {value: 'fastest', displayValue: 'Fastest'},
             {value: 'cheapest', displayValue: 'Budget'}
         ]
         , 'fastest')
-};
+];
 
 const contactForm = (handler) => {
     return makeForm(controls, handler);

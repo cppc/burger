@@ -45,8 +45,9 @@ export const formValid = (form, changed) => {
     return true;
 };
 
-export const makeInputElement = (t, p, v, x) => {
+export const makeInputElement = (k, t, p, v, x) => {
     return {
+        key: k,
         elementType: 'input',
         elementConfig: {
             type: t,
@@ -59,8 +60,9 @@ export const makeInputElement = (t, p, v, x) => {
     }
 };
 
-export const makeSelectElement = (o, v, x) => {
+export const makeSelectElement = (k, o, v, x) => {
     return {
+        key: k,
         elementType: 'select',
         elementConfig: {
             options: o,
@@ -92,9 +94,20 @@ export const updateForm = (form, id, value) => {
     return newForm;
 };
 
+const addControl = (result, control) => {
+    result.keys.push(control.key);
+    result.controls[control.key] = control;
+    return result
+}
+
+const makeControls = controls => controls.reduce((r, c) => addControl(r, c), {
+    keys: [],
+    controls: {}
+})
+
 export const makeForm = (controls, handler) => {
     return {
-        controls: controls,
+        ...makeControls(controls),
         valid: false,
         handler: handler
     }
@@ -102,12 +115,11 @@ export const makeForm = (controls, handler) => {
 
 export const renderFormControls = (form) => {
     console.log(form);
-    const formElements = [];
     const handler = form.handler;
-    for (let key in form.controls) {
+    return form.keys.map(key => {
         const { elementType, elementConfig, value, valid, validation, touched } = form.controls[key];
         const isInvalid = !(valid || !validation);
-        formElements.push(
+        return (
             <Input
                 elementType={elementType}
                 elementConfig={elementConfig}
@@ -118,8 +130,7 @@ export const renderFormControls = (form) => {
                 touched={touched}
             />
         )
-    }
-    return formElements;
+    })
 };
 
 export default {
